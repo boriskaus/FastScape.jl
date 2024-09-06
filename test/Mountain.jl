@@ -1,5 +1,5 @@
 # Mountain setup
-using FastScape 
+using FastScape, WriteVTK
 
 # run
 FastScape_Init()
@@ -12,6 +12,8 @@ FastScape_Setup()
 xl = 100e3
 yl = 100e3
 FastScape_Set_XL_YL(xl, yl)
+x = range(0, xl, length=nx)
+y = range(0, yl, length=ny)
 
 dt = 1e5
 FastScape_Set_DT(dt)
@@ -48,8 +50,10 @@ istep = FastScape_Get_Step()
 
 Chi = zeros(size(h))
 
+pvd = paraview_collection("Mountain")
+mkpath("VTK")
 while istep<nstep
-    global istep
+    global istep, pvd, time, x, y
 
     # execute step
     FastScape_Execute_Step()
@@ -60,14 +64,24 @@ while istep<nstep
     # extract solution
     FastScape_Copy_Chi(Chi)
     
-    # create VTK file
+    # create VTK file & add it to pvd file
+    vtk_grid("VTK/Mountain_$istep", x, y) do vtk
+        vtk["h [m]"] = h
+        pvd[istep] = vtk
+    end
+   
     #FastScape_VTK(h, 2.0)
     
+    x = range(0,xl,length=nx)
+
     # outputs h values
     FastScape_Copy_H(h)
     
     println("step $istep, h-range= $(extrema(h)), nstep=$nstep")    
 end
+
+vtk_save(pvd) # save pvd file (animations)
+
 FastScape_Debug()
 
 
