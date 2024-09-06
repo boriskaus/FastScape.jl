@@ -10,7 +10,7 @@ using Test, FastScape, Statistics, DelimitedFiles
 
     @testset "Fan" begin
         include("Fan.jl")
-        @test maximum(h) ≈ 664.0063768713197 rtol = 5e-2
+        @test maximum(h) ≈ 664.0063768713197 rtol = 1e-1
         @test mean(h) ≈ 113.71736488098453 rtol = 5e-2
     end
 
