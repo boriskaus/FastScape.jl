@@ -11,7 +11,6 @@ marine tranport is activated t
 
 =#
 using FastScape, WriteVTK
-using Random # in order to use the same seed
 
 # Set initial grid size
 nx, ny = 101, 151
@@ -29,9 +28,11 @@ dt = 1e3
 FastScape_Set_DT(dt)
 
 # initial topography
-#Random.seed!(123)
-rvec = randn(7)        # 7 reproducible random numbers
-h = rand(rvec,nx,ny)   # same random numbers
+h = rand(nx,ny)   # same random numbers
+if isfile("h_rand_Margin.txt")
+    # use the same random noise for testing
+    h = readdlm("h_rand_Margin.txt")
+end
 b = zeros(nx,ny)
 f = zeros(nx,ny)
 

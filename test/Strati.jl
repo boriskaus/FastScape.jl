@@ -15,7 +15,6 @@ the initial topography
 
 =#
 using FastScape, WriteVTK
-using Random # in order to use the same seed
 
 # Set initial grid size
 nx, ny = 101, 101
@@ -33,8 +32,11 @@ dt = 1e3
 FastScape_Set_DT(dt)
 
 # initial topography
-rng = MersenneTwister(1234);
-h = rand!(rng, zeros(nx,ny))    # same random numbers
+h = rand(nx,ny)   # same random numbers
+if isfile("h_rand_Strati.txt")
+    # use the same random noise for testing
+    h = readdlm("h_rand_Strati.txt")
+end
 b = zeros(nx,ny)
 f = zeros(nx,ny)
 

@@ -14,7 +14,6 @@ plateau only is stored in the Fluxes.txt file
 =#
 
 using FastScape, WriteVTK
-using Random # in order to use the same seed
 
 # Set initial grid size
 nx, ny = 101, 201
@@ -45,9 +44,12 @@ FastScape_Set_Erosional_Parameters(kf, kfsed, m, n, kd, kdsed, g1, g2, expp)
 # Set BC's - bottom side is fixed only
 FastScape_Set_BC(1000)
 
-Random.seed!(123)
-rvec = randn(7)        # 7 reproducible random numbers
-h = rand(rvec,nx,ny)   # same random numbers
+h = rand(nx,ny)   # same random numbers
+if isfile("h_rand_Fan.txt")
+    # use the same random noise for testing
+    h = readdlm("h_rand_Fan.txt")
+end
+
 b = zeros(nx,ny)
 FastScape_Init_H(h)
 for I in CartesianIndices(h) 

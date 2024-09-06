@@ -27,9 +27,12 @@ y = range(0, yl, length=ny)
 dt = 1e5
 FastScape_Set_DT(dt)
 
-Random.seed!(123)
-rvec = randn(7)        # 7 reproducible random numbers
-h = rand(rvec,nx,ny)   # same random numbers
+h = rand(nx,ny)   # random noise
+if isfile("h_rand_DippingDike.txt")
+    # use the same random noise for testing
+    h = readdlm("h_rand_DippingDike.txt")
+end
+
 FastScape_Init_H(h)
 
 # Set erosional parameters
