@@ -10,7 +10,6 @@ transport coefficient g = 1
 =#
 
 using FastScape, WriteVTK
-using Random # in order to use the same seed
 
 # run
 FastScape_Init()
