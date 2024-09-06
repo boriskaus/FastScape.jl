@@ -29,8 +29,9 @@ dt = 1e3
 FastScape_Set_DT(dt)
 
 # initial topography
-rng = MersenneTwister(1234);
-h = rand!(rng, zeros(nx,ny))    # same random numbers
+#Random.seed!(123)
+rvec = randn(7)        # 7 reproducible random numbers
+h = rand(rvec,nx,ny)   # same random numbers
 b = zeros(nx,ny)
 f = zeros(nx,ny)
 
@@ -75,7 +76,7 @@ end
 FastScape_Set_BC(1000)
 
 # set number of time steps and initialize counter istep
-nstep = 1000
+nstep = 200
 nfreq = 10
 
 # echo model setup

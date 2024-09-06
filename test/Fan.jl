@@ -27,8 +27,6 @@ FastScape_Set_XL_YL(xl, yl)
 x = range(0, xl, length=nx)
 y = range(0, yl, length=ny)
 
-
-
 dt = 2e3
 FastScape_Set_DT(dt)
 
@@ -47,8 +45,9 @@ FastScape_Set_Erosional_Parameters(kf, kfsed, m, n, kd, kdsed, g1, g2, expp)
 # Set BC's - bottom side is fixed only
 FastScape_Set_BC(1000)
 
-rng = MersenneTwister(1234);
-h = rand!(rng, zeros(nx,ny))    # same random numbers
+Random.seed!(123)
+rvec = randn(7)        # 7 reproducible random numbers
+h = rand(rvec,nx,ny)   # same random numbers
 b = zeros(nx,ny)
 FastScape_Init_H(h)
 for I in CartesianIndices(h) 

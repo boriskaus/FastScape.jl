@@ -29,8 +29,9 @@ y = range(0, yl, length=ny)
 dt = 1e5
 FastScape_Set_DT(dt)
 
-rng = MersenneTwister(1234);
-h = rand!(rng, zeros(nx,ny))    # same random numbers
+Random.seed!(123)
+rvec = randn(7)        # 7 reproducible random numbers
+h = rand(rvec,nx,ny)   # same random numbers (for testing purposes)
 FastScape_Init_H(h)
 
 # Set erosional parameters
