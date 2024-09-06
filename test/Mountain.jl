@@ -1,11 +1,22 @@
-# Mountain setup
+#=
+
+simple example of the use of the FastScapeLib
+where a square domain (100x100km) is subjected to constant and uniform uplift
+of 1 mm/yr
+all boundaries are at base level
+initial random topography
+nonlinear erosion law (n=1.5, m=0.6)
+transport coefficient g = 1
+=#
+
 using FastScape, WriteVTK
+using Random # in order to use the same seed
 
 # run
 FastScape_Init()
 
 # Set initial grid size
-nx, ny = 101, 101
+nx, ny = 101, 121
 FastScape_Set_NX_NY(nx,ny)
 FastScape_Setup()
 
@@ -18,7 +29,8 @@ y = range(0, yl, length=ny)
 dt = 1e5
 FastScape_Set_DT(dt)
 
-h = rand(Float64,nx,ny)
+rng = MersenneTwister(1234);
+h = rand!(rng, zeros(nx,ny))    # same random numbers
 FastScape_Init_H(h)
 
 # Set erosional parameters
@@ -67,7 +79,7 @@ while istep<nstep
     # create VTK file & add it to pvd file
     vtk_grid("VTK/Mountain_$istep", x, y) do vtk
         vtk["h [m]"] = h
-        pvd[istep] = vtk
+        pvd[istep*dt] = vtk
     end
    
     #FastScape_VTK(h, 2.0)
@@ -80,9 +92,8 @@ while istep<nstep
     println("step $istep, h-range= $(extrema(h)), nstep=$nstep")    
 end
 
-vtk_save(pvd) # save pvd file (animations)
+vtk_save(pvd) # save pvd file (open this with Paraview to see an animation)
 
 FastScape_Debug()
-
 
 FastScape_Destroy()

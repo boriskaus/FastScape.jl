@@ -114,7 +114,7 @@ end
 Returns the current basement height (in m)
 """
 function FastScape_Copy_Basement(b::AbstractArray{Float64})
-    ccall((:fastscape_copy_b_, FSLIB), 
+    ccall((:fastscape_copy_basement_, FSLIB), 
         Cvoid, 
         (Ptr{Float64},),
         b)
