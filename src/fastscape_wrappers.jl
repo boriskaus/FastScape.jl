@@ -1,7 +1,18 @@
 
 using Libdl
+using Fastscapelib_jll
 
-FSLIB = "../libfastscapelib_fortran.dylib";
+#FSLIB = "../libfastscapelib_fortran.dylib";
+#FSLIB = 
+function __init__()
+    if isfile("libfastscapelib_fortran.dylib")
+        global FSLIB = joinpath(pwd(),"libfastscapelib_fortran.dylib")
+        println("Using locally compiled version of libfastscapelib_fortran.dylib")
+    else
+        global FSLIB = Fastscapelib_jll.libfastscapelib_fortran;
+        println("Using libfastscapelib_fortran.dylib from Fastscapelib_jll")
+    end
+end
 
 export FastScape_Init,FastScape_Setup,FastScape_Destroy,FastScape_View,FastScape_Execute_Step
 export FastScape_Init_H,FastScape_Init_F,FastScape_Copy_H
