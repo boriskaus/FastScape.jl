@@ -18,7 +18,7 @@ DelimitedFiles = "1"
 Fastscapelib_jll = "2.8"
 Statistics = "1.0"
 WriteVTK = "1"
-julia = "1.10"
+julia = "1.9"
 
 [extras]
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
