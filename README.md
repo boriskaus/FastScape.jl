@@ -1,5 +1,5 @@
 # FastScape.jl
-[![CI](https://github.com/boriskaus/FastScape.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/boriskaus/FastScape.jl/actions/workflows/CI.yml)
+[![CI](https://github.com/boriskaus/FastScape.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/boriskaus/FastScape.jl/actions/workflows/CI.yml)
 
 Julia interface to [FastScape](https://fastscape.org) - a flexible and modular landscape evolution model developed at GFZ Potsdam.
 
