@@ -1,8 +1,10 @@
 # FastScape.jl
-[![CI](https://github.com/boriskaus/FastScape.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/boriskaus/FastScape.jl/actions/workflows/CI.yml)
+[![CI](https://github.com/boriskaus/FastScape.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/boriskaus/FastScape.jl/actions/workflows/CI.yml)
 
 Julia interface to [FastScape](https://fastscape.org) - a flexible and modular landscape evolution model developed at GFZ Potsdam.
 
-This translates nearly all routines of the fortran version of the library. As of now, you have to compile this library yourself and place it in the main directory of repository (but a BinaryBuilder version of FastScape seems faeasible).
+This provides an interface to nearly all routines of the fortran version of the library. It also automatically downloads a [precompiled version](https://github.com/JuliaBinaryWrappers/Fastscapelib_jll.jl) of the library that works on Linux, Mac and Windows (provided you have julia >1.9).
 
-Examples of how to use it are in the `/test` directory.
+
+![Dipping Dike example](docs/img/dippingdike.gif)
+The example above is from [DippingDyke.jl](./test/DippingDyke.jl), which is one of the example from FastScape. Additional examples are provided in the [test](./test) directory.
