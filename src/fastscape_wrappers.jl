@@ -1,5 +1,4 @@
 
-using Libdl
 using Fastscapelib_jll
 
 #FSLIB = "../libfastscapelib_fortran.dylib";
