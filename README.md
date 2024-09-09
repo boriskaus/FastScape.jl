@@ -7,7 +7,7 @@ This provides an interface to nearly all routines of the fortran version of the 
 
 
 ![Dipping Dike example](docs/img/dippingdike.gif)
-The example above is from [DippingDyke.jl](./test/DippingDyke.jl), which is one of the example from FastScape.
+The movie above is [DippingDyke.jl](./test/DippingDyke.jl), one of the examples from FastScape.
 
 
 ### Installation
@@ -18,7 +18,7 @@ julia> ]
 ```
 after this you can test it with:
 ```julia
-(@v1.10) pkg> test FastScape.jl
+(@v1.10) pkg> test FastScape
 ```
 
 ### Usage
